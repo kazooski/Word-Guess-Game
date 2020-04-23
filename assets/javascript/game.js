@@ -5,10 +5,12 @@
         //     console.log( array[index] ); // Log the item
         //     array.splice( index, 1 ); // Remove the item from the array
         // }
+// REMOVE THE COMMAS FROM ARRAY BEING PRINTED
 
 // Global variables
 
-var pantryItems = [
+// foodItems is an object that holds the food and image
+var foodItems = [
     {food: "olive oil", image: ""},
     {food: "vegetable oil", image: ""},
     {food: "balsamic vinegar", image: ""},
@@ -38,3 +40,32 @@ var pantryItems = [
     {food: "bell pepper", image: ""},
 ]
 
+var wins = 0;
+// The number of allowed gueses per word
+var userCount = 7;
+console.log(userCount);
+
+var wordAnswer = [];
+
+
+// Chooses and renders the word randomly
+function renderWord() {
+
+    // Randomly selects food+image 
+    var foodSelection = foodItems[Math.floor(Math.random() * foodItems.length)];
+    // Translates the food into underscores 
+    for (i=0; i < foodSelection.food.length; i++){
+         wordAnswer[i] = "_ ";
+    }
+    // Adds the word into the html ID for visibility
+    document.querySelector("#word-selection").innerHTML = wordAnswer;
+};
+
+renderWord();
+console.log(wordAnswer);
+document.getElementById("#user-guesses") = userCount + "did it print??";
+
+// Function for user input
+
+// Removes foodSelection from array foodItems 
+// remove = arr.splice(foodSelection,1);
