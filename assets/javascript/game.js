@@ -52,8 +52,13 @@ var wordAnswer = [];
 // user letter guess
 var userGuess;
 
-// array for incorrect letters
+// string for wrong Letters
 var letterWrong = [];
+
+//underscores in words
+var underscoreCount = 0;
+// letters in words
+var letterCount;
 
 // FUNCTION renderWord Chooses and renders the word randomly
 function renderWord() {
@@ -69,8 +74,12 @@ function renderWord() {
         }
         else {
             wordAnswer[i] = ("&nbsp; &nbsp; &nbsp;");
+            underscoreCount++;
         }
     }
+
+    //Counts real letters
+    letterCount = foodSelection.food.length - underscoreCount;
     // Adds the word into the html ID for visibility using the .join function to remove the commas
     document.querySelector("#word-selection").innerHTML = wordAnswer.join("");
 };
@@ -86,32 +95,61 @@ document.onkeyup = function(event) {
 
     userGuess = event.key.toLowerCase();
 
-    alert(userGuess);
+     
 
     // Sets a loop to run through each foodSelection.food letter
     for (i=0; i < foodSelection.food.length; i++){
         
-        // Determines if the food index letter to match the user guess.
+        // Actions if the food index letter to match the user guess.
         if (userGuess == foodSelection.food[i]) {
 
             // replaces the letter
             wordAnswer.splice(i, 1, userGuess);
             document.querySelector("#word-selection").innerHTML = wordAnswer.join("");
+            letterCount--;
+            document.querySelector("#letter-count").innerHTML = letterCount;
+
+
         }
+        // else {
+        //     alert("nope");
+        // }
     }
+
+    if (letterCount == 0) {
+        renderWord();
+        removeFood();
+    }
+
+    // for (i=0; i < wordAnswer.length; i++){
+
+    //     if (userGuess != wordAnswer[i]) {
+    //         // adds the wrong letter to the letterWrong string
+    //         alert("wrong");
+    //         letterWrong.push(userGuess);
+    //         // document.getElementByID("#user-guesses").innerHTML = letterWrong.join("");
+    //     }
 }
 
 
+    //         // Actions if the food index letter does NOT match the user guess
+    // if (userGuess) {
+    //     // adds the wrong letter to the letterWrong string
+    //     alert("wrong");
+    //     letterWrong.push(userGuess);
+    //     document.getElementByID("#user-guesses").innerHTML = letterWrong.join("");
+    //     // break;
+    // }
 
 
-function test(){
+
+
+// function test(){
     renderWord();
     console.log(foodSelection);
     console.log(random);
     removeFood();
     console.log(wordAnswer);
     console.log(foodItems);
-}
-
-test();
-console.log(userGuess)
+    console.log(letterCount);
+// }
