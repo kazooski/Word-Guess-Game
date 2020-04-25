@@ -99,6 +99,12 @@ document.onkeyup = function(event) {
 
     // Sets a loop to run through each foodSelection.food letter
     for (i=0; i < foodSelection.food.length; i++){
+
+        if (wordAnswer.includes(foodSelection.food[i])) {
+            //letter has already been used
+            alert("nah");
+            return;
+        }
         
         // Actions if the food index letter to match the user guess.
         if (userGuess == foodSelection.food[i]) {
@@ -108,9 +114,9 @@ document.onkeyup = function(event) {
             document.querySelector("#word-selection").innerHTML = wordAnswer.join("");
             letterCount--;
             document.querySelector("#letter-count").innerHTML = letterCount;
-
-
         }
+
+
         // else {
         //     alert("nope");
         // }
