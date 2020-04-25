@@ -6,11 +6,11 @@
 
 // foodItems is an object that holds the food and image
 var foodItems = [
-    {food: "olive_oil", image: ""},
-    {food: "vegetable_oil", image: ""},
-    {food: "balsamic_vinegar", image: ""},
-    {food: "red_wine_vinegar", image: ""},
-    {food: "rice", image: ""},
+    { food: "olive_oil", image: "" },
+    { food: "vegetable_oil", image: "" },
+    { food: "balsamic_vinegar", image: "" },
+    { food: "red_wine_vinegar", image: "" },
+    { food: "rice", image: "" },
     // {food: "kosher_salt", image: ""},
     // {food: "pepper", image: ""},
     // {food: "canned_tuna", image: ""},
@@ -68,11 +68,10 @@ function renderWord() {
     // Randomly selects food+image 
     foodSelection = foodItems[random];
     // Translates the food into underscores 
-    for (i=0; i < foodSelection.food.length; i++){
-        if (foodSelection.food[i] !== "_"){
-         wordAnswer[i] = "_ ";
-        }
-        else {
+    for (i = 0; i < foodSelection.food.length; i++) {
+        if (foodSelection.food[i] !== "_") {
+            wordAnswer[i] = "_ ";
+        } else {
             wordAnswer[i] = ("&nbsp; &nbsp; &nbsp;");
             underscoreCount++;
         }
@@ -85,7 +84,7 @@ function renderWord() {
 };
 
 // FUNCTION removeFood removes the randomly selected food index
-function removeFood(){
+function removeFood() {
     foodItems.splice(random, 1);
 }
 
@@ -95,61 +94,67 @@ document.onkeyup = function(event) {
 
     userGuess = event.key.toLowerCase();
 
-     
+    // Already selected letter
+    if (wordAnswer.includes(userGuess) || letterWrong.includes(userGuess)) {
+        alert('You already selected this!');
+        return;
+    }
 
-    // Sets a loop to run through each foodSelection.food letter
-    for (i=0; i < foodSelection.food.length; i++){
-        
-        // Actions if the food index letter to match the user guess.
-        if (userGuess == foodSelection.food[i]) {
+    if (!foodSelection.food.includes(userGuess)) {
+        letterWrong.push(userGuess);
+        userCount--; // lose number of guesses
 
-            // replaces the letter
-            wordAnswer.splice(i, 1, userGuess);
-            document.querySelector("#word-selection").innerHTML = wordAnswer.join("");
-            letterCount--;
-            document.querySelector("#letter-count").innerHTML = letterCount;
-
-
+        if (userCount === 0) {
+            alert('You lost!');
         }
-        // else {
-        //     alert("nope");
-        // }
+
+        return;
     }
 
-    if (letterCount == 0) {
+    // replace letters if guess is right
+    foodSelection.food.split('').forEach(function(letter, index) {
+        // loop through each letter
+
+        // replace every match
+        if (userGuess === letter) {
+            wordAnswer[index] = userGuess;
+            letterCount--;
+        }
+
+        document.querySelector("#word-selection").innerHTML = wordAnswer.join("");
+        document.querySelector("#letter-count").innerHTML = letterCount;
+    });
+
+    console.log('word answer', wordAnswer);
+    console.log('letter wrong', letterWrong);
+
+
+    if (letterCount == 0 || userCount == 0) {
+
+        // reset variables
+        wordAnswer = [];
+        userCount = 7;
+        letterWrong = [];
+        letterCount = 0;
+        underscoreCount = 0;
+
+
         renderWord();
-        removeFood();
+        document.querySelector("#letter-count").innerHTML = letterCount; // reload dom
+        //  removeFood();
     }
 
-    // for (i=0; i < wordAnswer.length; i++){
-
-    //     if (userGuess != wordAnswer[i]) {
-    //         // adds the wrong letter to the letterWrong string
-    //         alert("wrong");
-    //         letterWrong.push(userGuess);
-    //         // document.getElementByID("#user-guesses").innerHTML = letterWrong.join("");
-    //     }
 }
-
-
-    //         // Actions if the food index letter does NOT match the user guess
-    // if (userGuess) {
-    //     // adds the wrong letter to the letterWrong string
-    //     alert("wrong");
-    //     letterWrong.push(userGuess);
-    //     document.getElementByID("#user-guesses").innerHTML = letterWrong.join("");
-    //     // break;
-    // }
 
 
 
 
 // function test(){
-    renderWord();
-    console.log(foodSelection);
-    console.log(random);
-    removeFood();
-    console.log(wordAnswer);
-    console.log(foodItems);
-    console.log(letterCount);
+renderWord();
+console.log(foodSelection);
+console.log(random);
+// removeFood();
+console.log(wordAnswer);
+console.log(foodItems);
+console.log(letterCount);
 // }
