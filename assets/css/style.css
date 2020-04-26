@@ -1,0 +1,61 @@
+/* font-family: 'Fredericka the Great', cursive;
+font-family: 'Josefin Slab', serif; */
+
+body {
+    background-color: #c39195;
+    font-family: 'Josefin Slab', serif;
+}
+
+h1 {
+    color: #959455;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 60px;
+    text-shadow: 2px 2px black;
+}
+
+h2 {
+    color: #959455;
+    font-family:'Josefin Slab', serif; 
+    font-size: 20px;
+}
+
+p {
+    color: #448883;
+    font-family: 'Josefin Slab', serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.wrapper {
+    width: 900px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+#header-box {
+    height: 100px;
+    padding: 20px;
+    text-align: center;
+    border: 1.5px solid #959455;
+    background-color: #f5d66a;
+    margin-top: 0 auto;
+    background-image: url(../images/restaurant-kitchen-designs.png) 50% 50% / 100% no-repeat fixed;
+}
+
+main {
+    background: #f5d66a;
+    border: 1.5px solid #959455;
+    padding: 30px;
+    margin-bottom: 30px;
+    clear: both;
+    overflow: auto;
+}
+
+.food-image {
+    float: right;
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+    margin-right: 25px;
+  }
+  

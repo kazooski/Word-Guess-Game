@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Josefin+Slab&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Guess The Pantry Items</title>
 </head>
 <body>
 
-    <div>
-        <p id="directions-text">Press any letter to start guessing!</p>
-        <p id="word-selection"></p>
-        <p id="user-guesses"></p>
-        <p id="wins-text"></p>
-        <p id="food-image"></p>
-        <p id="letter-count"></p>
+    <div class="wrapper">
+        <div id="header-box">
+            <h1>Food Pantry Items</h1>
+        </div>
+
+        <main>
+            
+            <div>
+                <p id="directions-text">Press any letter to start guessing!</p>
+                <p id="word-selection"></p>
+                <p id="user-guesses"></p>
+                <p id="wins-text"></p>
+                <p id="food-image"></p>
+                <p id="letter-count"></p>
+            </div>
+            <img class="food-image" src="assets/images/olive oil.jpg">
+        </main>
+
+    
+
     </div>
     <script src="../Word-Guess-Game/assets/javascript/game.js"></script>
 </body>

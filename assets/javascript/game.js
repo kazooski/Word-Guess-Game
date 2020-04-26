@@ -11,28 +11,15 @@ var foodItems = [
     { food: "balsamic_vinegar", image: "" },
     { food: "red_wine_vinegar", image: "" },
     { food: "rice", image: "" },
-    // {food: "kosher_salt", image: ""},
-    // {food: "pepper", image: ""},
-    // {food: "canned_tuna", image: ""},
-    // {food: "beans", image: ""},
-    // {food: "quinoa", image: ""},
-    // {food: "pasta", image: ""},
-    // {food: "flour", image: ""},
-    // {food: "granulated_sugar", image: ""},
-    // {food: "garlic", image: ""},
-    // {food: "onions", image: ""},
-    // {food: "butter", image: ""},
-    // {food: "milk", image: ""},
-    // {food: "eggs", image: ""},
-    // {food: "carrot", image: ""},
-    // {food: "mustard", image: ""},
-    // {food: "mayonnaise", image: ""},
-    // {food: "lemon", image: ""},
-    // {food: "nuts", image: ""},
-    // {food: "bread", image: ""},
-    // {food: "potato", image: ""},
-    // {food: "thyme", image: ""},
-    // {food: "bell_pepper", image: ""},
+    {food: "kosher_salt", image: ""},
+    {food: "pepper", image: ""},
+    {food: "canned_tuna", image: ""},
+    {food: "beans", image: ""},
+    {food: "quinoa", image: ""},
+    {food: "pasta", image: ""},
+    {food: "flour", image: ""},
+    {food: "granulated_sugar", image: ""},
+    {food: "garlic", image: ""},
 ]
 
 // wins counter
@@ -103,6 +90,7 @@ document.onkeyup = function(event) {
     if (!foodSelection.food.includes(userGuess)) {
         letterWrong.push(userGuess);
         userCount--; // lose number of guesses
+        document.querySelector("#user-guesses").innerHTML = "You have " + letterCount + " lives.";
 
         if (userCount === 0) {
             alert('You lost!');
@@ -122,7 +110,7 @@ document.onkeyup = function(event) {
         }
 
         document.querySelector("#word-selection").innerHTML = wordAnswer.join("");
-        document.querySelector("#letter-count").innerHTML = letterCount;
+        document.querySelector("#letter-count").innerHTML = "You have " + letterCount + " more letters to solve the word.";
     });
 
     console.log('word answer', wordAnswer);
